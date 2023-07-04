@@ -1,14 +1,21 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import {
   HeartIcon,
   MagnifyingGlassIcon,
   ShoppingBagIcon,
 } from "@heroicons/react/24/outline";
 import logo from "../assets/logo.png";
+import { setOpenCart } from "../app/CartSlice.js";
 
 const Navbar = () => {
   const [navState, setNavState] = useState(false);
+  const dispatch = useDispatch();
+
+  const onCartToggle = () => {
+    dispatch(setOpenCart({ cartState: true }));
+  };
 
   const onNavScroll = () => {
     if (window.scrollY > 200) {
@@ -59,6 +66,7 @@ const Navbar = () => {
             <li className="grid items-center">
               <button
                 type="button"
+                onClick={onCartToggle}
                 className="border-none outline-none active:scale-110
               transition-all duration-300  relative"
               >
