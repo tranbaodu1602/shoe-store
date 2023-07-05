@@ -3,7 +3,7 @@ import React from "react";
 import { ChevronDoubleLeftIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 // eslint-disable-next-line react/prop-types
-const CartCount = ({ onCartToggle }) => {
+const CartCount = ({ onCartToggle, onClearCartItems, totalQTY }) => {
   return (
     <>
       <div
@@ -27,7 +27,7 @@ const CartCount = ({ onCartToggle }) => {
                 className="bg-theme-cart rounded px-1 py-0.5 text-slate-100 
               font-normal text-xs"
               >
-                (Items)
+                ({totalQTY}Items)
               </span>
             </h1>
           </div>
@@ -36,6 +36,7 @@ const CartCount = ({ onCartToggle }) => {
           <button
             type="button"
             className="rounded bg-theme-cart active:scale-90 p-0.5"
+            onClick={onClearCartItems}
           >
             <XMarkIcon className="w-5 h-5 text-white stroke-[2]" />
           </button>
