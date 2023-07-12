@@ -13,6 +13,7 @@ const initialState = {
 const CartSlice = createSlice({
   initialState,
   name: "cart",
+
   reducers: {
     setOpenCart: (state, action) => {
       state.cartState = action.payload.cartState;

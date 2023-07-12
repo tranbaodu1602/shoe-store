@@ -5,3 +5,5 @@ export { default as FlexContext } from "./FlexContent.jsx";
 export { default as Stories } from "./Stories.jsx";
 export { default as Footer } from "./Footer.jsx";
 export { default as Cart } from "./Cart.jsx";
+export { default as Other } from "./Other.jsx";
+export { default as FormOrther } from "./FormOrther.jsx";

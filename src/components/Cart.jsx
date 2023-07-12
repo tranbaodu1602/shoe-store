@@ -13,6 +13,7 @@ import {
   setCloseCart,
   setGetTotals,
 } from "../app/CartSlice.js";
+import { setOpenFromOther } from "../app/OrderSlice.js";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -31,6 +32,9 @@ const Cart = () => {
 
   const onClearCartItems = () => {
     dispatch(setClearCartItems());
+  };
+  const onFromOtherToggle = () => {
+    dispatch(setOpenFromOther({ FromOtherState: true }));
   };
 
   return (
@@ -51,7 +55,6 @@ const Cart = () => {
             onCartToggle={onCartToggle}
             onClearCartItems={onClearCartItems}
           />
-
           {cartItems?.length === 0 ? (
             <CartEmpty onCartToggle={onCartToggle} />
           ) : (
@@ -64,7 +67,6 @@ const Cart = () => {
                   <CartItem key={i} item={item} />
                 ))}
               </div>
-
               <div className="fixed bottom-0 bg-white w-full px-5 py-2 grid items-center">
                 <div className=" flex items-center justify-between">
                   <h1 className="text-base font-semibold uppercase">
@@ -84,6 +86,8 @@ const Cart = () => {
                   <button
                     type="button"
                     className="button-theme bg-theme-cart text-white"
+                    //
+                    onClick={onFromOtherToggle}
                   >
                     Check Out
                   </button>

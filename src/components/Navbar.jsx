@@ -2,15 +2,18 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  HeartIcon,
+  ChatBubbleBottomCenterIcon,
   MagnifyingGlassIcon,
   ShoppingBagIcon,
+  UserIcon,
 } from "@heroicons/react/24/outline";
 import logo from "../assets/logo.png";
 import { selectTotalQTY, setOpenCart } from "../app/CartSlice.js";
 
 const Navbar = () => {
   const [navState, setNavState] = useState(false);
+  const [showSearch, setShowSearch] = useState(false); // state variable to control visibility of search input
+
   const dispatch = useDispatch();
   const totalQTY = useSelector(selectTotalQTY);
 
@@ -32,13 +35,18 @@ const Navbar = () => {
       window.removeEventListener("scroll", onNavScroll);
     };
   }, []);
+
+  const toggleSearch = () => {
+    setShowSearch((prevState) => !prevState);
+  };
+
   return (
     <>
       <header
         className={
           !navState
             ? "absolute top-7 left-0 right-0 opacity-100 z-50"
-            : "fixed top-0 left-0 right-0 h-[9vh] flex items-center justify-center opacity-100 z-[200] blur-effect-theme"
+            : "fixed top-0 left-0 right-0 h-[9vh] flex items-center justify-center opacity-100 z-[200] blur-effect-theme bg-slate-300"
         }
       >
         <nav className="flex items-center justify-between nike-container">
@@ -49,21 +57,43 @@ const Navbar = () => {
               className={`w-16 h-auto ${navState && "filter brightness-0"}`}
             />
           </div>
-          <ul className="flex items-center justify-center gap-2">
-            <li className="grid items-center">
+          <ul className="flex items-center justify-center gap-6">
+            <li className="grid items-center relative">
               <MagnifyingGlassIcon
                 className={`icon-style ${
                   navState && "text-slate-900 transition-all duration-300"
                 }`}
+                onClick={toggleSearch} // show/hide search input on click
               />
+              {/* search input field */}
+              {showSearch && (
+                <input
+                  type="text"
+                  className=" w-80 rounded-full border-gray-300 border-2 px-4 py-2 
+                  absolute top-0.3 right-8 focus:outline-none focus:border-cyan-600 
+                  lg:w-72 md:w-64 sm:w-52 "
+                />
+              )}
             </li>
             <li className="grid items-center">
-              <HeartIcon
+              <button>
+                <UserIcon
+                  //--click
+                  className={`icon-style ${
+                    navState && "text-slate-900 transition-all duration-300"
+                  }`}
+                />
+              </button>
+            </li>
+
+            <li className="grid items-center">
+              <ChatBubbleBottomCenterIcon
                 className={`icon-style ${
                   navState && "text-slate-900 transition-all duration-300"
                 }`}
               />
             </li>
+
             <li className="grid items-center">
               <button
                 type="button"

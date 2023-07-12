@@ -1,6 +1,14 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-import { Cart, Footer, Hero, Navbar, Sales, Stories } from "./components";
+import {
+  Cart,
+  Footer,
+  Hero,
+  Navbar,
+  Other,
+  Sales,
+  Stories,
+} from "./components";
 import {
   heroapi,
   popularsales,
@@ -17,6 +25,7 @@ const App = () => {
     <>
       <Navbar />
       <Cart />
+      <Other />
       <main className="flex flex-col gap-16 relative">
         <Hero heroapi={heroapi} />
         <Sales endpoint={popularsales} ifExists />
